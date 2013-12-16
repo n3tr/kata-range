@@ -72,45 +72,59 @@ describe 'Range' do
 		actual.should eq(expected)
 	end
 	
-	it 'should return empty set when input is "(0,1]"' do
+	it 'should return {1} set when input is "(0,1]"' do
 		expected = "{1}"
 		range = Range.new("(0,1]")
 		actual = range.to_set()
 		actual.should eq(expected)
 	end
 
-	it 'should return empty set when input is "(0,2]"' do
+	it 'should return {1,2} set when input is "(0,2]"' do
 		expected = "{1,2}"
 		range = Range.new("(0,2]")
 		actual = range.to_set()
 		actual.should eq(expected)
 	end
 
-	it 'should return empty set when input is "[0,2]"' do
+	it 'should return {0,1,2} set when input is "[0,2]"' do
 		expected = "{0,1,2}"
 		range = Range.new("[0,2]")
 		actual = range.to_set()
 		actual.should eq(expected)
 	end
 
-	it 'should return empty set when input is "(0,9)"' do
+	it 'should return {1,2,3,4,5,6,7,8} set when input is "(0,9)"' do
 		expected = "{1,2,3,4,5,6,7,8}"
 		range = Range.new("(0,9)")
 		actual = range.to_set()
 		actual.should eq(expected)
 	end
 
-	it 'should return empty set when input is "(0,10)"' do
+	it 'should return {1,2,3,4,5,6,7,8,9} set when input is "(0,10)"' do
 		expected = "{1,2,3,4,5,6,7,8,9}"
 		range = Range.new("(0,10)")
 		actual = range.to_set()
 		actual.should eq(expected)
 	end
 
-	it 'should return empty set when input is "(0,10]"' do
+	it 'should return {1,2,3,4,5,6,7,8,9,10} set when input is "(0,10]"' do
 		expected = "{1,2,3,4,5,6,7,8,9,10}"
 		range = Range.new("(0,10]")
 		actual = range.to_set()
 		actual.should eq(expected)
 	end
+
+	it 'should return {-4,-3,-2,-1,0,1,2,3,4,5} set when input is "(-5,5]"' do
+		expected = "{-4,-3,-2,-1,0,1,2,3,4,5}"
+		range = Range.new("(-5,5]")
+		actual = range.to_set()
+		actual.should eq(expected)
+	end
+
+	# it 'should return {B,C} set when input is "(A,C]"' do
+	# 	expected = "{B,C}"
+	# 	range = Range.new("(A,C]")
+	# 	actual = range.to_set()
+	# 	actual.should eq(expected)
+	# end
 end
