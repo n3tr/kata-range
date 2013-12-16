@@ -92,4 +92,11 @@ describe 'Range' do
 		actual = range.to_set()
 		actual.should eq(expected)
 	end
+
+	it 'should return empty set when input is "(0,10)"' do
+		expected = "{1,2,3,4,5,6,7,8,9}"
+		range = Range.new("(0,10)")
+		actual = range.to_set()
+		actual.should eq(expected)
+	end
 end
