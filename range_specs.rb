@@ -31,11 +31,21 @@ class Range
 		last_sign = last[1]
 		last_value = last[0].to_i
 
-		
 		if last_sign == ')' then
 			last_value -= 1
 		end
 		last_value
+	end
+
+	def get_bound(sting_value,sign,modifier)
+
+		if sign == '(' then
+			# start_value += 1
+		end
+
+		if sign == ')' then
+			# last_value -= 1
+		end	
 	end
 
 	def create_set(start_value,last_value)
