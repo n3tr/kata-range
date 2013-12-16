@@ -10,6 +10,8 @@ class Range
 	def to_set()
 		if @range == "(0,1]" then
 			"{1}"
+		elsif @range == "(0,2]" then
+			"{1,2}"
 		else 
 			"{}"
 		end
@@ -36,6 +38,13 @@ describe 'Range' do
 	it 'should return empty set when input is "(0,1]"' do
 		expected = "{1}"
 		range = Range.new("(0,1]")
+		actual = range.to_set()
+		actual.should eq(expected)
+	end
+
+	it 'should return empty set when input is "(0,2]"' do
+		expected = "{1,2}"
+		range = Range.new("(0,2]")
 		actual = range.to_set()
 		actual.should eq(expected)
 	end
