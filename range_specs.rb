@@ -7,42 +7,38 @@ class Range
 		@range = range_string
 	end
 
-	# def to_set()
-	# 	if @range == "(0,1]" then
-	# 		"{1}"
-	# 	elsif @range == "(0,2]" then
-	# 		"{1,2}"
-	# 	else 
-	# 		"{}"
-	# 	end
-	# end
-
 	def to_set()
 		
 		data = @range.split(',')
 
-		start = data[0]
-		last = data[data.size-1]
+		start = get_start_bound(data[0]) 
+		last = get_last_bound(data[data.size-1])
 
+		create_set(start,last)
+	end
+
+	def get_start_bound(start)
 		start_sign = start[0]
 		start_value = start[1].to_i
-
-		last_sign = last[1]
-		last_value = last[0].to_i
-
-		# puts start_value + "-" + start_sign
-		# puts last_value + "-" + last_sign
 
 		if start_sign == '(' then
 			start_value += 1
 		end
+		start_value
+	end
 
-		puts "#{last_value}"
+	def get_last_bound(last)
+		last_sign = last[1]
+		last_value = last[0].to_i
 
+		
 		if last_sign == ')' then
 			last_value -= 1
 		end
+		last_value
+	end
 
+	def create_set(start_value,last_value)
 		result = "{"
 
 		for i in start_value..last_value
@@ -51,16 +47,11 @@ class Range
 			end
 
 			result += i.to_s
-
-			# puts "#{i}"
 		end
 
 		result += "}"
 
-		# puts result
-
 		result
-
 	end
 
 end
