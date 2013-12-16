@@ -19,29 +19,29 @@ class Range
 
 	def get_start_bound(start)
 		start_sign = start[0]
-		start_value = start[1].to_i
+		start_value = start[1,start.size-1].to_i
 		start_value += 1 if start_sign == '('
 		start_value
 	end
 
 	def get_last_bound(last)
-		last_sign = last[1]
-		last_value = last[0].to_i
+		last_sign = last[last.size-1]
+		last_value = last[0,last.size-1].to_i
 		last_value -= 1 if last_sign == ')'
 		last_value
 	end
 
-	def get_bound(sting_value,sign,modifier)
+	# def get_bound(sting_value,sign,modifier)
 
-		if sign == '(' then
-			# start_value += 1
+	# 	if sign == '(' then
+	# 		# start_value += 1
 
-		end
+	# 	end
 
-		if sign == ')' then
-			# last_value -= 1
-		end	
-	end
+	# 	if sign == ')' then
+	# 		# last_value -= 1
+	# 	end	
+	# end
 
 	def create_set(start_value,last_value)
 		build_string = ""
@@ -89,6 +89,13 @@ describe 'Range' do
 	it 'should return empty set when input is "[0,2]"' do
 		expected = "{0,1,2}"
 		range = Range.new("[0,2]")
+		actual = range.to_set()
+		actual.should eq(expected)
+	end
+
+	it 'should return empty set when input is "(0,9)"' do
+		expected = "{1,2,3,4,5,6,7,8}"
+		range = Range.new("(0,9)")
 		actual = range.to_set()
 		actual.should eq(expected)
 	end
