@@ -31,26 +31,20 @@ class Range
 		last_value
 	end
 
-	# def get_bound(sting_value,sign,modifier)
-
-	# 	if sign == '(' then
-	# 		# start_value += 1
-
-	# 	end
-
-	# 	if sign == ')' then
-	# 		# last_value -= 1
-	# 	end	
-	# end
-
 	def create_set(start_value,last_value)
-		build_string = ""
+		# build_string = ""
 
-		for i in start_value..last_value
-			build_string += "," if i != start_value
-			build_string += i.to_s
-		end
+		# (start_value..last_value).each { |i| 
+		# 	build_string += "," if i != start_value
+		# 	build_string += i.to_s
+		# }
 
+		# "{#{build_string}}"
+
+		range_array = Array.new
+		
+		(start_value..last_value).each { |i| range_array.push(i) }
+		build_string = range_array.join(',')
 		"{#{build_string}}"
 	end
 
@@ -121,10 +115,11 @@ describe 'Range' do
 		actual.should eq(expected)
 	end
 
-	# it 'should return {B,C} set when input is "(A,C]"' do
-	# 	expected = "{B,C}"
-	# 	range = Range.new("(A,C]")
-	# 	actual = range.to_set()
-	# 	actual.should eq(expected)
-	# end
+	it 'should return {10000,10001,10002} set when input is "(9999,10002]"' do
+		expected = "{10000,10001,10002}"
+		range = Range.new("(9999,10002]")
+		actual = range.to_set()
+		actual.should eq(expected)
+	end
+
 end
