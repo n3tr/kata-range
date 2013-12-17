@@ -10,7 +10,7 @@ class Range
 	def to_set()
 		data = split_range()
 		create_set(data[0],data[1])
-	end
+  end
 
   def split_range()
     match_data = /^([\[\(])([-[[:digit:]]]+),([-[[:digit:]]]+)([\]\)])$/.match(@range)
@@ -22,13 +22,10 @@ class Range
     [start_value, last_value]
   end
 	
-	def create_set(start_value,last_value)
-		range_array = Array.new
-		
-		(start_value..last_value).each { |i| range_array.push(i) }
-		build_string = range_array.join(',')
+  def create_set(start_value,last_value)
+		build_string = (start_value..last_value).to_a.join(',')
 		"{#{build_string}}"
-	end
+  end
 
 end
 
