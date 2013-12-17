@@ -9,9 +9,9 @@ class Range
 
 	def to_set()
 		before, after = @range.split(',')
-
 		start = get_start_bound(before)
 		last = get_last_bound(after)
+
 		create_set(start,last)
   end
 
@@ -106,6 +106,20 @@ describe 'Range' do
 	it 'should return {10000,10001,10002} set when input is "(9999,10002]"' do
 		expected = "{10000,10001,10002}"
 		range = Range.new("(9999,10002]")
+		actual = range.to_set()
+		actual.should eq(expected)
+	end
+
+	it 'should return {-4,-3,-2} set when input is "(-5,-1)"' do
+		expected = "{-4,-3,-2}"
+		range = Range.new("(-5,-1)")
+		actual = range.to_set()
+		actual.should eq(expected)
+	end
+
+	it 'should return {-100,-99} set when input is "[-100,-99]"' do
+		expected = "{-100,-99}"
+		range = Range.new("[-100,-99]")
 		actual = range.to_set()
 		actual.should eq(expected)
 	end
