@@ -8,19 +8,28 @@ class Range
 	end
 
 	def to_set()
-		data = split_range()
-		create_set(data[0],data[1])
+		before, after = @range.split(',')
+
+		start = get_start_bound(before)
+		last = get_last_bound(after)
+		create_set(start,last)
   end
 
-  def split_range()
-    match_data = /^([\[\(])([-[[:digit:]]]+),([-[[:digit:]]]+)([\]\)])$/.match(@range)
-    puts match_data
-    start_value = match_data[2].to_i
-    start_value += 1 if match_data[1] == '('
-    last_value = match_data[3].to_i
-    last_value -= 1 if match_data[4] == ')'
-    [start_value, last_value]
-  end
+  private
+
+  def get_start_bound(start)
+	  sign = start[0]
+	  value = start[1,start.size-1].to_i
+	  value += 1 if sign == '('
+  	value
+	end
+
+	def get_last_bound(last)
+	  sign = last[last.size-1]
+	  value = last[0,last.size-1].to_i
+	  value -= 1 if sign == ')'
+  	value
+	end
 	
   def create_set(start_value,last_value)
 		build_string = (start_value..last_value).to_a.join(',')
