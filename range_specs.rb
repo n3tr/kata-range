@@ -11,7 +11,6 @@ class Range
     before, after = @range.split(',')
     start = get_start_bound(before)
     last = get_last_bound(after)
-
     create_set(start,last)
   end
 
